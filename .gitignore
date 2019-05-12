@@ -1,3 +1,4 @@
 technicalInterview/.idea/
 *.iml
 tech/.idea/
+tech/target/
