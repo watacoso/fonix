@@ -1,0 +1,28 @@
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users(
+id INT AUTO_INCREMENT PRIMARY KEY,
+email VARCHAR
+);
+
+DROP TABLE IF EXISTS observers;
+
+CREATE TABLE observers(
+id INT AUTO_INCREMENT PRIMARY KEY,
+userId INT ,
+origCode VARCHAR,
+destCode VARCHAR,
+frequencyCode INT
+);
+
+DROP TABLE IF EXISTS flights;
+
+CREATE TABLE flights(
+id INT AUTO_INCREMENT PRIMARY KEY,
+userId INT ,
+origCode VARCHAR,
+destCode VARCHAR,
+flightCode VARCHAR,
+departureDate DATE,
+pricing DECIMAL(9,2)
+);
