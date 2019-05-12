@@ -2,6 +2,6 @@ package com.fonix.api;
 
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class flight {
+@RestController("api/observer")
+public class ObserverController {
 }
