@@ -1,21 +1,22 @@
 package com.fonix.api;
 
 import com.fonix.observer.AddObserverDTO;
-import com.fonix.observer.AddObserverService;
+import com.fonix.observer.ObserverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("api/observer")
+@RestController
+@RequestMapping("/api/observer")
 public class ObserverController {
 
     @Autowired
-    private AddObserverService addObserverService;
+    private ObserverService observerService;
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.OK)
     public void addObserver(@RequestBody AddObserverDTO dto){
-        addObserverService.addObserver(dto);
+        observerService.addObserver(dto);
     }
 
 }
