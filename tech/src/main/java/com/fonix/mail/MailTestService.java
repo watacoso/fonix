@@ -13,7 +13,7 @@ public class MailTestService implements MailService{
     public void send(String email, String message) {
 
 
-        String s=String.format("To: %s \n\n %s ",email,message);
+        String s=String.format("\nTo: %s \n\n %s ",email,message);
 
         logger.info(s);
     }
