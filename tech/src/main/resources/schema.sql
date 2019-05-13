@@ -7,16 +7,17 @@ id INT AUTO_INCREMENT PRIMARY KEY,
 email VARCHAR,
 origCode VARCHAR,
 destCode VARCHAR,
-frequencyCode INT
+frequencyCode VARCHAR,
+bestPrice DECIMAL(9,2),
+nextUpdate DATE default CURRENT_TIMESTAMP
 );
 
 
 CREATE TABLE flights(
-id INT AUTO_INCREMENT PRIMARY KEY,
-userId INT ,
 origCode VARCHAR,
 destCode VARCHAR,
 flightCode VARCHAR,
 departureDate DATE,
 pricing DECIMAL(9,2)
 );
+
