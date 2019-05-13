@@ -5,22 +5,19 @@ import com.fonix.util.Frequency;
 
 public class ObserverModel {
 
-    private final Integer id;
+
     private final String email;
     private final String originCode;
-    private final String destrinationCode;
+    private final String destinationCode;
     private final Frequency frequency;
 
-    public ObserverModel(Integer id, String email, String originCode, String desrinationCode, Frequency frequency) {
-        this.id=id;
+
+
+    public ObserverModel(String email, String originCode, String desrinationCode, Frequency frequency) {
         this.email = email;
         this.originCode = originCode;
-        this.destrinationCode = desrinationCode;
+        this.destinationCode = desrinationCode;
         this.frequency = frequency;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public String getEmail() {
@@ -31,8 +28,8 @@ public class ObserverModel {
         return originCode;
     }
 
-    public String getDestrinationCode() {
-        return destrinationCode;
+    public String getDestinationCode() {
+        return destinationCode;
     }
 
     public Frequency getFrequency() {

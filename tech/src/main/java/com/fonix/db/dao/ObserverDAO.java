@@ -8,10 +8,10 @@ import java.util.Date;
 
 public interface ObserverDAO {
 
-    ObserverModel get(Integer id);
+    ObserverModel get(String email);
 
-    void updateStatus(Integer id, BigDecimal bestOffer, Date newUpdateTime);
+    void updateStatus(String email, BigDecimal bestOffer, Date newUpdateTime);
 
-    void insertOrUpdate(String mail, String originCode, String destinationCode, Frequency frequency);
+    void insertOrUpdate(String email, String originCode, String destinationCode, Frequency frequency);
 
 }

@@ -1,6 +1,7 @@
 package com.fonix.db.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -19,8 +20,14 @@ public class FlightJdbcDAO implements FlightDAO {
 
     @Override
     public void insertOrUpdate(String origCode, String destCode, String flightCode, Date departureDate, BigDecimal pricing) {
-        String sql="INSERT INTO Flights(origCode,destCode,flightCode,departureDate,pricing) " +
+        String insertSql="INSERT INTO Flights(origCode,destCode,flightCode,departureDate,pricing) " +
                 "VALUES(:origCode,:destCode,:flightCode,:departureDate,:pricing)";
+
+        String updateSql="UPDATE Flights SET pricing=:pricing " +
+                "WHERE origCode=:origCode " +
+                "AND destCode=:destCode " +
+                "AND flightCode=:flightCode " +
+                "AND CAST(departureDate as DATE)=CAST(:departureDate as DATE)";
 
         Map<String,Object> params=new HashMap<>();
         params.put("origCode",origCode);
@@ -28,6 +35,10 @@ public class FlightJdbcDAO implements FlightDAO {
         params.put("flightCode",flightCode);
         params.put("departureDate",departureDate);
         params.put("pricing",pricing);
-        jdbcTemplate.execute(sql,params, PreparedStatement::execute);
+        try {
+            jdbcTemplate.execute(insertSql, params, PreparedStatement::execute);
+        } catch (DuplicateKeyException ex) {
+            jdbcTemplate.execute(updateSql, params, PreparedStatement::execute);
+        }
     }
 }
