@@ -3,15 +3,13 @@ package com.fonix.observer;
 
 import com.fonix.util.Frequency;
 
-import java.beans.ConstructorProperties;
-
 public class AddObserverDTO {
 
 
     private final Integer id;
     private final String email;
     private final String originCode;
-    private final String destrinationCode;
+    private final String destinationCode;
     private final Frequency frequency;
 
 
@@ -19,7 +17,7 @@ public class AddObserverDTO {
         this.id = id;
         this.email = email;
         this.originCode = originCode;
-        this.destrinationCode = destrinationCode;
+        this.destinationCode = destrinationCode;
         this.frequency = frequency;
     }
 
@@ -35,8 +33,8 @@ public class AddObserverDTO {
         return originCode;
     }
 
-    public String getDestrinationCode() {
-        return destrinationCode;
+    public String getDestinationCode() {
+        return destinationCode;
     }
 
     public Frequency getFrequency() {

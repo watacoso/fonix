@@ -11,11 +11,11 @@ public class ObserverModel {
     private final String destrinationCode;
     private final Frequency frequency;
 
-    public ObserverModel(Integer id, String email, String originCode, String destrinationCode, Frequency frequency) {
+    public ObserverModel(Integer id, String email, String originCode, String desrinationCode, Frequency frequency) {
         this.id=id;
         this.email = email;
         this.originCode = originCode;
-        this.destrinationCode = destrinationCode;
+        this.destrinationCode = desrinationCode;
         this.frequency = frequency;
     }
 
