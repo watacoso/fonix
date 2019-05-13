@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AddObserverServiceImpl implements AddObserverService {
+public class ObserverServiceImpl implements ObserverService {
 
     @Autowired
     ObserverDAO observerDAO;
@@ -17,8 +17,8 @@ public class AddObserverServiceImpl implements AddObserverService {
 
     @Override
     public void addObserver(AddObserverDTO dto) {
-        observerDAO.insertOrUpdate(dto.getEmail(),dto.getOriginCode(),dto.getDestrinationCode(),dto.getFrequency());
-        String msg=buildConfirmationMessage(dto.getOriginCode(),dto.getDestrinationCode(),dto.getFrequency());
+        observerDAO.insertOrUpdate(dto.getEmail(),dto.getOriginCode(),dto.getDestinationCode(),dto.getFrequency());
+        String msg=buildConfirmationMessage(dto.getOriginCode(),dto.getDestinationCode(),dto.getFrequency());
         mailService.send(dto.getEmail(),msg);
     }
 
@@ -26,7 +26,7 @@ public class AddObserverServiceImpl implements AddObserverService {
         return new StringBuilder()
                 .append("Your subscription is confirmed!\n")
                 .append(String.format("You will receive new offers for flights from %s to %s \n",origin,destination))
-                .append(String.format("With % frequency!",frequency))
+                .append(String.format("With %s frequency!",frequency))
                 .toString();
     }
 

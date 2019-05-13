@@ -1,6 +1,6 @@
 package com.fonix.observer;
 
-public interface AddObserverService {
+public interface ObserverService {
 
     void addObserver(AddObserverDTO dto);
 
