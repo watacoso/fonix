@@ -2,9 +2,12 @@ package com.fonix.observer;
 
 
 import com.fonix.util.Frequency;
+import com.fonix.util.Regex;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 
 import java.io.InvalidObjectException;
+
 
 public class ObserverModel {
 
@@ -41,7 +44,7 @@ public class ObserverModel {
     }
 
     private void validate() throws InvalidObjectException {
-        if(!StringUtils.hasText(email)
+        if(!StringUtils.hasText(email) || !email.matches(Regex.EMAIL_PATTERN.getPattern())
         || !StringUtils.hasText(originCode)
         || !StringUtils.hasText(destinationCode)
         || frequency==null){

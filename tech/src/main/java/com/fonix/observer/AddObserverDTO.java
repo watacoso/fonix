@@ -2,11 +2,17 @@ package com.fonix.observer;
 
 
 import com.fonix.util.Frequency;
+import com.fonix.util.Regex;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.util.StringUtils;
 
 import java.io.InvalidObjectException;
 
 public class AddObserverDTO {
+
+
+
 
 
     private final String email;
@@ -41,10 +47,11 @@ public class AddObserverDTO {
     }
 
     private void validate() throws InvalidObjectException {
-        if(!StringUtils.hasText(email)
+
+        if (!StringUtils.hasText(email) || !email.matches(Regex.EMAIL_PATTERN.getPattern())
                 || !StringUtils.hasText(originCode)
                 || !StringUtils.hasText(destinationCode)
-                || frequency==null){
+                || frequency == null) {
             throw new InvalidObjectException("ObserverDTO input is not valid");
         }
 
