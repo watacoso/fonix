@@ -2,67 +2,77 @@
 <html lang="en">
 <head>
 
-    <script src="jquery-3.4.1.min.js"/>
-
+    <link rel="stylesheet" href="css/style.css"/>
     <meta charset="UTF-8">
     <title>Insert Flight data</title>
 </head>
 <body>
 
-<form id="addObserverForm" action="bestoffer/api/observer">
-    <div>
-        <label for="email">email</label>
-        <input id="email" type="email"><br>
+<form id="observerForm">
+    <div class="inputGroup">
+        <label for="email">Email</label>
+        <input name="email" id="email" type="email"><br>
     </div>
-    <div>
-        <label for="orig">origin airport code</label>
-        <input id="orig" type="text">
+    <div class="inputGroup">
+        <label for="orig">Origin</label>
+        <input name="originCode" id="orig" type="text">
     </div>
-    <div>
-        <label for="dest">destination airport code</label>
-        <input id="dest" type="text">
+    <div class="inputGroup">
+        <label for="dest">Destination</label>
+        <input name="destinationCode" id="dest" type="text">
     </div>
-    <div>
+    <div class="inputGroup">
         <label for="freq">Frequency</label>
-        <select id="freq">
+        <select name="frequency" id="freq">
             <option value="DAILY">Daily</option>
             <option value="WEEKLY">Weekly</option>
             <option value="MONTHLY">Monthly</option>
             <option value="UNCAPPED">Uncapped</option>
         </select>
     </div>
-    <div>
-        <input type="button" onclick="sendRequest()" value="Submit"/>
+    <div class="inputGroup">
+        <input id="addObserverBtn" type="submit" value="Submit"/>
     </div>
 </form>
 
 <script>
-    function sendRequest() {
+    window.onload= function() {
 
-        $("#addObserverForm").submit(function(e) {
+        $( document ).ready(function() {
+            console.log("ready!")
+            $('#observerForm').submit(function (event) {
 
-            e.preventDefault(); // avoid to execute the actual submit of the form.
+                event.preventDefault();
 
-            var form = $(this);
-            var url = form.attr('action');
+                var url = "/bestoffer/api/observer";
 
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: form.serialize(), // serializes the form's elements.
-                success: function(data)
-                {
-                    alert(data); 
-                },
-                fail:function (error) {
+                var formData = {
+                    originCode : $("#orig").val(),
+                    destinationCode :  $("#dest").val(),
+                    email :  $("#email").val(),
+                    frequency:  $("#freq").val()
+                };
 
-                }
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    contentType:"application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(formData),
+
+                    complete: function (data) {
+                        alert("new Observer inserted! look for the confirmation mail")
+                    },
+                    fail:function(){
+
+                    }
+                });
             });
-
-
         });
+    };
 
-    }
+
 </script>
+<script src="js/jquery.js"></script>
 </body>
 </html>
