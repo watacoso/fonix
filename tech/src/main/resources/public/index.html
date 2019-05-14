@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <script src="jquery-3.4.1.min.js"/>
+
+    <meta charset="UTF-8">
+    <title>Insert Flight data</title>
+</head>
+<body>
+
+<form id="addObserverForm" action="bestoffer/api/observer">
+    <div>
+        <label for="email">email</label>
+        <input id="email" type="email"><br>
+    </div>
+    <div>
+        <label for="orig">origin airport code</label>
+        <input id="orig" type="text">
+    </div>
+    <div>
+        <label for="dest">destination airport code</label>
+        <input id="dest" type="text">
+    </div>
+    <div>
+        <label for="freq">Frequency</label>
+        <select id="freq">
+            <option value="DAILY">Daily</option>
+            <option value="WEEKLY">Weekly</option>
+            <option value="MONTHLY">Monthly</option>
+            <option value="UNCAPPED">Uncapped</option>
+        </select>
+    </div>
+    <div>
+        <input type="button" onclick="sendRequest()" value="Submit"/>
+    </div>
+</form>
+
+<script>
+    function sendRequest() {
+
+        $("#addObserverForm").submit(function(e) {
+
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+
+            var form = $(this);
+            var url = form.attr('action');
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: form.serialize(), // serializes the form's elements.
+                success: function(data)
+                {
+                    alert(data); 
+                },
+                fail:function (error) {
+
+                }
+            });
+
+
+        });
+
+    }
+</script>
+</body>
+</html>
