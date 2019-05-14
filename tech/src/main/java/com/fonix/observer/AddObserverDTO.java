@@ -2,6 +2,9 @@ package com.fonix.observer;
 
 
 import com.fonix.util.Frequency;
+import org.springframework.util.StringUtils;
+
+import java.io.InvalidObjectException;
 
 public class AddObserverDTO {
 
@@ -12,12 +15,13 @@ public class AddObserverDTO {
     private final Frequency frequency;
 
 
-    public AddObserverDTO(String email, String originCode, String destrinationCode, Frequency frequency) {
+    public AddObserverDTO(String email, String originCode, String destinationCode, Frequency frequency) throws InvalidObjectException {
 
         this.email = email;
         this.originCode = originCode;
-        this.destinationCode = destrinationCode;
+        this.destinationCode = destinationCode;
         this.frequency = frequency;
+        validate();
     }
 
     public String getEmail() {
@@ -34,5 +38,15 @@ public class AddObserverDTO {
 
     public Frequency getFrequency() {
         return frequency;
+    }
+
+    private void validate() throws InvalidObjectException {
+        if(!StringUtils.hasText(email)
+                || !StringUtils.hasText(originCode)
+                || !StringUtils.hasText(destinationCode)
+                || frequency==null){
+            throw new InvalidObjectException("ObserverDTO input is not valid");
+        }
+
     }
 }
