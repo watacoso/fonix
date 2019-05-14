@@ -1,6 +1,8 @@
-# fonix
+# fonix technical interview exercise 
 
-Jar is present in the tech folder.
+The JAR in the tech folder.
+
+I used Java8, Spring and H2 for the backend, Static html and jquery for front-end.
 
 I made the following assumptions:
 
@@ -9,6 +11,10 @@ I made the following assumptions:
   - An email registered to offersf or a specific route can have only one frequency.
   - The crawler can update previously inserted flights with a new price. That means that the best price can go up amd down.
   
+  
+  Kindest regards,
+  
+  Guido Pintus
 
 
   
