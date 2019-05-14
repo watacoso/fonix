@@ -4,8 +4,9 @@ The JAR in the tech folder.
 
 The port is 8090 and the context root is /bestoffer. 
 
-Go to locslhost:8090/bestoffer/swagger-ui to consult the available rest services. 
-Api/flights is the endpoint for the crawler. 
+Go to localhost:8090/bestoffer/swagger-ui to consult the available rest services. 
+
+api/flights is the endpoint for the crawler. 
 
 
 I used Java8, Spring and H2 for the backend, Static html and jquery for front-end.
