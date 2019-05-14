@@ -2,6 +2,9 @@ package com.fonix.observer;
 
 
 import com.fonix.util.Frequency;
+import org.springframework.util.StringUtils;
+
+import java.io.InvalidObjectException;
 
 public class ObserverModel {
 
@@ -13,11 +16,12 @@ public class ObserverModel {
 
 
 
-    public ObserverModel(String email, String originCode, String desrinationCode, Frequency frequency) {
+    public ObserverModel(String email, String originCode, String desrinationCode, Frequency frequency) throws InvalidObjectException {
         this.email = email;
         this.originCode = originCode;
         this.destinationCode = desrinationCode;
         this.frequency = frequency;
+        validate();
     }
 
     public String getEmail() {
@@ -34,5 +38,15 @@ public class ObserverModel {
 
     public Frequency getFrequency() {
         return frequency;
+    }
+
+    private void validate() throws InvalidObjectException {
+        if(!StringUtils.hasText(email)
+        || !StringUtils.hasText(originCode)
+        || !StringUtils.hasText(destinationCode)
+        || frequency==null){
+            throw new InvalidObjectException("ObserverModel input is not valid");
+        }
+
     }
 }
