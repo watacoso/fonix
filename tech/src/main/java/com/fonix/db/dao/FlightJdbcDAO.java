@@ -27,7 +27,7 @@ public class FlightJdbcDAO implements FlightDAO {
                 "WHERE origCode=:origCode " +
                 "AND destCode=:destCode " +
                 "AND flightCode=:flightCode " +
-                "AND CAST(departureDate as DATE)=CAST(:departureDate as DATE)";
+                "AND CAST(departureDate as TIMESTAMP)=CAST(:departureDate as TIMESTAMP)";
 
         Map<String,Object> params=new HashMap<>();
         params.put("origCode",origCode);
