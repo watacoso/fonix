@@ -54,6 +54,7 @@ public class ObserversFlightsJdbcDAO implements ObserversFlightsDAO {
                 .append("    departureDate,                                                         ")
                 .append("    min(pricing) as minPrice                                               ")
                 .append("    from flights                                                           ")
+                .append("    where departureDate>sysdate                                            ")
                 .append("    group by  origCode,destCode                                            ")
                 .append("    )                                                                      ")
                 .append("SELECT o.email,                                                            ")
