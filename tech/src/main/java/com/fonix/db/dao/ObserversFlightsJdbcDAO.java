@@ -37,6 +37,11 @@ public class ObserversFlightsJdbcDAO implements ObserversFlightsDAO {
         });
     }
 
+    /*
+    * join (on origin and destination codes) of the flights (starting from current time) with minimum pricing,
+    * and the qualified observers.
+    * An observer is qualified if it's frequency is uncapped of it's nextUpdate is before the current time.
+    * */
 
     private String getBestOffersQuery() {
         return new StringBuilder()

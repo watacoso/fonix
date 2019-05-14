@@ -15,6 +15,10 @@ public class ObserverServiceImpl implements ObserverService {
     @Autowired
     MailService mailService;
 
+    /*
+    * Add an observer and use the mail service module to send a confirmation.
+    * */
+
     @Override
     public void addObserver(AddObserverDTO dto) {
         observerDAO.insertOrUpdate(dto.getEmail(),dto.getOriginCode(),dto.getDestinationCode(),dto.getFrequency());

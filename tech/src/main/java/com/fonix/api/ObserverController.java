@@ -13,6 +13,13 @@ public class ObserverController {
     @Autowired
     private ObserverService observerService;
 
+
+    /*
+    * I made the assumption that the user will insert the same values of origin and destination
+    * that will be delivered by the crawler.
+    *
+    * */
+
     @PostMapping
     @ResponseStatus(code = HttpStatus.OK)
     public void addObserver(@RequestBody AddObserverDTO dto){

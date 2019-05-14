@@ -1,7 +1,5 @@
 package com.fonix.mail;
 
-import org.springframework.stereotype.Service;
-
 
 public interface MailService {
 

@@ -27,16 +27,27 @@ public class BestOffersServiceImpl implements BestOffersService {
     @Autowired
     ObserverDAO observerDAO;
 
+    /*
+    * Retrieve the list of qualified observers together with the best flight offer avaiable.
+    *Then, updates each observer status.
+    * */
     @Override
     public void deliverBestOffers() {
+
+
         List<OfferModel> bestOffers=observersFlightsDAO.getBestOffersForObservers();
 
-        bestOffers.forEach(this::contactObserver);
+        bestOffers.forEach(this::updateObserver);
 
     }
 
+
+    /*
+    * Transactionally update the table with the new avaiable best offer and an incremented update time.
+    * in the presence of a change of price, send a notification to the observer.
+    * */
     @Transactional
-    protected void contactObserver(OfferModel offerModel){
+    protected void updateObserver(OfferModel offerModel){
 
         BigDecimal prevOffer=offerModel.getPreviousBestOffer();
         BigDecimal currentOffer=offerModel.getCurrentBestOffer();
